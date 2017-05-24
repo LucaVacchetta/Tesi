@@ -20,7 +20,7 @@ spec:
           claimName: jmeter-pv-claim
       containers:
       - name: jm-slave
-        image: dddldlw/tesi:jmeter-slave-v1.11
+        image: tesijmeterkubernetes/jmeter:slave
         ports:
         - containerPort: 1099
           name: port1
@@ -35,5 +35,3 @@ spec:
         volumeMounts:
         - mountPath: "/mnt/"
           name: jmeter-pv-storage
-      imagePullSecrets:
-      - name: regsecret
