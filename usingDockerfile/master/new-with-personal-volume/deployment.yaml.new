@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jm-master-vol
+  labels:
+    app: jm-master-vol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jm-master-vol
+  template:
+    metadata:
+      labels:
+        app: jm-master-vol
+    spec:
+      volumes:
+      - name: jmeter-pv-storage
+        persistentVolumeClaim:
+          claimName: jmeter-pv-claim
+      - name: jmeter-testcase-pv-storage
+        persistentVolumeClaim:
+          claimName: jemter-testcase-pv-claim
+      containers:
+      - name: jm-master
+        image: dddldlw/tesi:jmeter-master-v1.42
+        ports:
+        - containerPort: 60000
+          name: jmeter
+        - containerPort: 2379
+          name: etcd1
+        - containerPort: 2380
+          name: etcd2
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: "/mnt/"
+          name: jmeter-pv-storage
+        - mountPath: "/tmp/"
+          name: jmeter-testcase-pv-storage
+      imagePullSecrets:
+      - name: regsecret

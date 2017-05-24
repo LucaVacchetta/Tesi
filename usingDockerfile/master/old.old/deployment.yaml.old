@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jm-master-from-ubuntu
+  labels:
+    app: jm-master-from-ubuntu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jm-master-from-ubuntu
+  template:
+    metadata:
+      labels:
+        app: jm-master-from-ubuntu
+    spec:
+      containers:
+      - name: jm-master
+        image: dddldlw/tesi:jm-master-from-ubuntu
+        ports:
+        - containerPort: 60000
+          name: jmeter
+        - containerPort: 2379
+          name: etcd1
+        - containerPort: 2380
+          name: etcd2
+        stdin: true
+        tty: true
+        command: ["/bin/bash"]
+      imagePullSecrets:
+      - name: regsecret
