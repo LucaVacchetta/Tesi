@@ -4,21 +4,25 @@ Questo repository è composto dalle seguenti cartelle, che contengono l'implemen
 - slave
 - volume
 
+<br>
 
 Per un corretto deploy di JMeter sul proprio cluster di Kubernetes è necessario seguire i passi sotto-indicati nell'ordine specificato:
-1. Effettuare il clone di questo repository in locale, tramite il comando:
+- Effettuare il clone di questo repository in locale, tramite il comando:
   - ```git clone https://github.com/LucaVacchetta/Tesi.git```
-2. Creare il __volume__ lanciando i seguenti comandi (__DALLA CARTELLA VOLUME__):
+- Creare il __volume__ lanciando i seguenti comandi (__DALLA CARTELLA VOLUME__):
   - ```kubectl create -f persistentVolume.yaml```
   - ```kubectl create -f persistentVolumeClaim.yaml```
-3. Creare il __master__ lanciando il comando (__DALLA CARTELLA MASTER__):
+- Creare il __master__ lanciando il comando (__DALLA CARTELLA MASTER__):
   - ```kubectl create -f deployment.yaml```
-4. Creare lo __slave__ lanciando il comando (__DALLA CARTELLA SLAVE__):
+- Creare lo __slave__ lanciando il comando (__DALLA CARTELLA SLAVE__):
     - ```kubectl create -f deployment.yaml```
 
+<br>
 
 In seguito se si desidera aumentare il numero di slave presenti, è necessario lanciare il comando:
 - ```kubectl scale deployment jm-slave --replicas=3``` #cioè andrà a creare 3 repliche dello slave
+
+<br>
 
 Successivamente per entrare nella console del master è necessario lanciare:
 
