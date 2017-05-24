@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jm-slave
+  labels:
+    app: jm-slave
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jm-slave
+  template:
+    metadata:
+      labels:
+        app: jm-slave
+    spec:
+      volumes:
+      - name: jmeter-pv-storage
+        persistentVolumeClaim:
+          claimName: jmeter-pv-claim
+      containers:
+      - name: jm-slave
+        image: dddldlw/tesi:jmeter-slave-v1.11
+        ports:
+        - containerPort: 1099
+          name: port1
+        - containerPort: 50000
+          name: port2
+        - containerPort: 2379
+          name: etcd1
+        - containerPort: 2380
+          name: etcd2
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: "/mnt/"
+          name: jmeter-pv-storage
+      imagePullSecrets:
+      - name: regsecret
