@@ -18,7 +18,6 @@ Per un corretto Deploy di Kubernetes in un ambiente multi-cloud (in questo caso 
   - Il nodo master di Kubernetes (Softlayer).
   - Un nodo worker di Kubernetes (Softlayer).
   - Un altro nodo worker di Kubernetes (AWS).
-<br>
 con il seguente comando:
   - ```terraform apply```
 
