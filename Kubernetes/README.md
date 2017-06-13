@@ -15,11 +15,11 @@ Per un corretto Deploy di Kubernetes in un ambiente multi-cloud (in questo caso 
 2. Al fine di verificare quali e quante macchine verranno create lanciare il comando:
     - ```terraform plan```
 3. Creare effettivamente le macchine, che in questo caso saranno tre server virtuali di cui due di Softlayer ed uno di AWS aventi relativamente:
-  - Il nodo master di Kubernetes (Softlayer).
-  - Un nodo worker di Kubernetes (Softlayer).
-  - Un altro nodo worker di Kubernetes (AWS).
-con il seguente comando:
-  - ```terraform apply```
+    - Il nodo master di Kubernetes (Softlayer).
+    - Un nodo worker di Kubernetes (Softlayer).
+    - Un altro nodo worker di Kubernetes (AWS).<br>
+  con il seguente comando:
+    - ```terraform apply```
 
 Ora se si desidera accedere al nodo master è necessario collegarsi tramite l'uso di ssh, cioè:
   - ```ssh root@<IP address of master node>```
