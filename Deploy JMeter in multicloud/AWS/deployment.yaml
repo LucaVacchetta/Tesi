@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jm-slave-AWS
+  labels:
+    app: jm-slave-AWS
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jm-slave-AWS
+  template:
+    metadata:
+      labels:
+        app: jm-slave-AWS
+    spec:
+      volumes:
+      - name: jmeter-pv-storage
+        persistentVolumeClaim:
+          claimName: jmeter-pv-claim
+      containers:
+      - name: jm-slave-AWS
+        image: tesijmeterkubernetes/jmeter:slave
+        ports:
+        - containerPort: 1099
+          name: port1
+        - containerPort: 50000
+          name: port2
+        - containerPort: 2379
+          name: etcd1
+        - containerPort: 2380
+          name: etcd2
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: "/mnt/"
+          name: jmeter-pv-storage
+      nodeSelector:
+        cloud-provider: AWS
