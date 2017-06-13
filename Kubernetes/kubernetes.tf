@@ -40,7 +40,7 @@ resource "softlayer_virtual_guest" "master" {
 
 resource "softlayer_virtual_guest" "worker" {
     count             = "${var.worker_count}"
-    hostname          = "kube-worker-${var.user_string}-${count.index}"
+    hostname          = "kube-worker"
     domain            = "bluereply.it"
     os_reference_code = "CENTOS_7_64"
     datacenter        = "${var.datacenter}"
