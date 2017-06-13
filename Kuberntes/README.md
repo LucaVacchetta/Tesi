@@ -1,15 +1,15 @@
-Automazione del deploy di Kubernetes
-====================================
+# Automazione del deploy di Kubernetes
+
 Innanzitutto questo processo di automazione su un ambiente multi-cloud è stato possibile grazie all'utilizzo di [Terraform](https://www.terraform.io/).
 <br>
-Setup
------
+## Setup
+
 Per tanto è necessario installare:
 - [Terraform](https://www.terraform.io/intro/getting-started/install.html).
 - [Terraform-provider-softlayer](https://github.com/softlayer/terraform-provider-softlayer) (versione di terraform creata da IBM per renderlo compatibile con softlayer. __NB:__ è anche necessario installare [GO dalla versione 1.8](https://medium.com/@patdhlk/how-to-install-go-1-8-on-ubuntu-16-04-710967aa53c9) in poi).
 
-Deploy
-------
+## Deploy
+
 Per un corretto Deploy di Kubernetes in un ambiente multi-cloud (in questo caso su Softlayer e AWS) è indispensabile seguire i seguenti passi:
 1. Aggiungere le proprie credenziali (sia di __Softlayer__ che di __AWS__) nel file [kubernetes.tf](kubernetes.tf)
 2. Al fine di verificare quali e quante macchine verranno create lanciare il comando:

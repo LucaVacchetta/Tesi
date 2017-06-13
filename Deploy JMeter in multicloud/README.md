@@ -1,6 +1,8 @@
 # Deploy di JMeter su ambiente multi-cloud
 <br>
+
 ## Setup
+
 Prima di effettuare il deploy di JMeter è necessario seguire i seguenti passi:
 - Entrare nella console del master.
 - Assegnare ad ogni nodo presente sul cluster la label __*cloud-provider*__ con uno di questi valori:
