@@ -21,7 +21,7 @@ Per un corretto deploy di JMeter sul proprio cluster di Kubernetes è necessario
 - Creare il __volume__ lanciando i seguenti comandi (__DALLA CARTELLA VOLUME__):
   - ```kubectl create -f persistentVolume.yaml```
   - ```kubectl create -f persistentVolumeClaim.yaml```
-- __NB:__ Dato che si sta utilizzando un volume di tipo hostPath (solo perché non si ha a disposizione un NFS) __è NECESSARIO__ copiare la cartella /mnt/jmeter-volume presente sul nodo in cui è stato creato il PersistentVolume su tutti i nodi del cluster.
+- __NB:__ Dato che si sta utilizzando un volume di tipo [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) (solo perché non si ha a disposizione un NFS) __è NECESSARIO__ copiare la cartella /mnt/jmeter-volume presente sul nodo in cui è stato creato il PersistentVolume su tutti i nodi del cluster.
 - Creare il __master__ lanciando il comando (__DALLA CARTELLA MASTER__):
   - ```kubectl create -f deployment.yaml```
 - __NB:__ Nuovamente __è NECESSARIO__ copiare la cartella /mnt/jmeter-volume presente sul nodo in cui è stato creato il PersistentVolume su tutti i nodi del cluster, cosicché gli slave possano accedere al file in comune.
