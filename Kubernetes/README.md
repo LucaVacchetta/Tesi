@@ -20,7 +20,7 @@ Per un corretto Deploy di Kubernetes in un ambiente multi-cloud (in questo caso 
   - Un altro nodo worker di Kubernetes (AWS).
 <br>
 con il seguente comando:
-    - ```terraform apply```
+  - ```terraform apply```
 
 Ora se si desidera accedere al nodo master è necessario collegarsi tramite l'uso di ssh, cioè:
   - ```ssh root@<IP address of master node>```
