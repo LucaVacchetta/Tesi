@@ -1,4 +1,4 @@
-# Deploy di JMeter su ambiente multi-cloud
+# Deploy di JMeter su Kubernetes in multi-cloud
 <br>
 
 ## Setup
