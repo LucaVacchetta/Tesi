@@ -11,10 +11,12 @@ Per tanto è necessario installare:
 ## Deploy
 
 Per un corretto Deploy di Kubernetes in un ambiente multi-cloud (in questo caso su Softlayer e AWS) è indispensabile seguire i seguenti passi:
-1. Aggiungere le proprie credenziali (sia di __Softlayer__ che di __AWS__) nel file [kubernetes.tf](kubernetes.tf)
-2. Al fine di verificare quali e quante macchine verranno create lanciare il comando:
+1. Creare una chiave ssh, necessaria per il trasferimento sicuro dei files di setup ai cloud provider, con il seguente comando:
+    - ```ssh-keygen -t rsa```
+2. Aggiungere le proprie credenziali (sia di __Softlayer__ che di __AWS__) nel file [kubernetes.tf](kubernetes.tf)
+3. Al fine di verificare quali e quante macchine verranno create lanciare il comando:
     - ```terraform plan```
-3. Creare effettivamente le macchine, che in questo caso saranno tre server virtuali di cui due di Softlayer ed uno di AWS aventi relativamente:
+4. Creare effettivamente le macchine, che in questo caso saranno tre server virtuali di cui due di Softlayer ed uno di AWS aventi relativamente:
     - Il nodo master di Kubernetes (Softlayer).
     - Un nodo worker di Kubernetes (Softlayer).
     - Un altro nodo worker di Kubernetes (AWS).<br>
