@@ -32,6 +32,7 @@ Per un corretto deploy di JMeter sul proprio cluster di Kubernetes è necessario
 
 <br>
 In seguito se si desidera aumentare il numero di slave presenti, è necessario lanciare il comando:
+
 - ```kubectl scale deployment jm-slave-softlayer --replicas=3``` #cioè farà sì che ci saranno 3 repliche dello slave nel cloud di Softlayer
 
 <br>
