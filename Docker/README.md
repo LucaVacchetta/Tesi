@@ -6,6 +6,7 @@ La parte riguardante il deploy di JMeter su Kubernetes è composta dalle seguent
 
 <br>
 
+## Deploy
 Per un corretto deploy di JMeter sul proprio cluster di Kubernetes è necessario seguire i passi sotto-indicati nell'ordine specificato:
 - Effettuare il clone di questo repository in locale, tramite il comando:
   - ```git clone https://github.com/LucaVacchetta/Tesi.git```
