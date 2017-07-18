@@ -1,25 +1,25 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: jm-slave-AWS
+  name: jm-slave-aws
   labels:
-    app: jm-slave-AWS
+    app: jm-slave-aws
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jm-slave-AWS
+      app: jm-slave-aws
   template:
     metadata:
       labels:
-        app: jm-slave-AWS
+        app: jm-slave-aws
     spec:
       volumes:
       - name: jmeter-pv-storage
         persistentVolumeClaim:
           claimName: jmeter-pv-claim
       containers:
-      - name: jm-slave-AWS
+      - name: jm-slave-aws
         image: tesijmeterkubernetes/jmeter:slave
         ports:
         - containerPort: 1099
