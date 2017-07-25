@@ -36,16 +36,18 @@ resource "softlayer_virtual_guest" "master" {
       destination = "/tmp/setup_master.sh"
     }
 
+    provisioner "file" {
+      source      = "script-on-master.sh"
+      destination = "/run/script-on-master.sh"
+    }
+
     provisioner "remote-exec" {
       inline = [
         "chmod +x /tmp/setup_master.sh",
+        "chmod +x /run/script-on-master.sh",
         "/tmp/setup_master.sh ${self.ipv4_address}",
       ]
     }
-
-#    provisioner "remote-exec" {
-#        script = "setup_master.sh"
-#    }
 
 }
 
@@ -95,48 +97,15 @@ provider "aws" {
 # the instances over SSH
 resource "aws_security_group" "ssh" {
   name        = "ssh_security"
-  description = "Used in the terraform"
- #  vpc_id      = "${aws_vpc.default.id}"
-
-  # SSH access from anywhere
-#  ingress {
-#    from_port   = 22
-#    to_port     = 22
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#  }
+  description = "Security group of AWS machine"
 
 # Permit access from anywhere
   ingress {
     from_port   = 0
-    to_port     = 0 #65535
-    protocol    = -1 #"0" #permetto tutto il traffico
+    to_port     = 0 
+    protocol    = -1 
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-# Permit access from anywhere
-#  ingress {
-#    from_port   = 10250
-#    to_port     = 10250
-#    protocol    = "tcp"
-#    cidr_blocks = ["172.31.27.96/32"]
-#  }
-
-  # Permit access from master node
-#  ingress {
-#    from_port   = 10250
-#    to_port     = 10250
-#    protocol    = "tcp"
-#    cidr_blocks = ["172.0.0.0/8"]
-#  }
-
-  # Permit access from master node
-#  ingress {
-#    from_port   = 2379
-#    to_port     = 2379
-#    protocol    = "tcp"
-#    cidr_blocks = ["${softlayer_virtual_guest.master.ipv4_address}/32"]
-#  }
 
   # outbound internet access
   egress {
@@ -198,5 +167,10 @@ resource "aws_instance" "worker" {
         "sudo /tmp/setup_worker.sh ${softlayer_virtual_guest.master.ipv4_address} ${self.public_ip}"
       ]
     }
+   
+    provisioner "local-exec" {
+      command = "./local-script.sh ${softlayer_virtual_guest.master.ipv4_address} ${softlayer_virtual_guest.worker.ipv4_address} ${self.public_ip}"
+    }
+
 }
 
