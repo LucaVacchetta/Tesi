@@ -28,7 +28,6 @@ for i in $(seq 1 3); do
     secondPart=`awk -F \${publicIP} '{print $2}' output_etcdctl`
     entryUpdated=$firstPart$WORKER_IP_AWS$secondPart
 
-    # alla stringa entryUpdated va aggiunto il \ davanti ad ogni " prima di poterla settare nel etcd DB
     echo $entryUpdated > newEntry
     etcdctl set kube-centos/network/subnets/$subnet "`cat newEntry`"
   else
