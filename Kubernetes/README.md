@@ -4,9 +4,7 @@ Innanzitutto questo processo di automazione su un ambiente multi-cloud è stato 
 <br>
 ## Setup
 
-Per tanto è necessario installare:
-- [Terraform](https://www.terraform.io/intro/getting-started/install.html).
-- [Terraform-provider-softlayer](https://github.com/softlayer/terraform-provider-softlayer) (versione di terraform creata da IBM per renderlo compatibile con softlayer. __NB:__ è anche necessario installare [GO dalla versione 1.8](https://medium.com/@patdhlk/how-to-install-go-1-8-on-ubuntu-16-04-710967aa53c9) in poi).
+Per l'installazione di Terraform su Ubuntu è necessario seguire la guida presente nella documentazione: [doc/terraform-installation.pdf](terraform-installation).
 
 ## Deploy
 
