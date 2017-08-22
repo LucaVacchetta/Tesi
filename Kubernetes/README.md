@@ -4,7 +4,7 @@ Innanzitutto questo processo di automazione su un ambiente multi-cloud è stato 
 <br>
 ## Setup
 
-Per l'installazione di Terraform su Ubuntu è necessario seguire la guida presente nella documentazione: [terraform-installation.pdf](doc/terraform-installation).
+Per l'installazione di Terraform su Ubuntu è necessario seguire la guida presente nella documentazione: [terraform-installation.pdf](https://github.com/LucaVacchetta/Tesi/blob/master/Kubernetes/doc/terraform-installation.pdf).
 
 ## Deploy
 
