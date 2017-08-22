@@ -2,8 +2,6 @@
 
 #slave setup
 
-# ip=$(/sbin/ip -o -4 addr list ens192 | awk '{print $4}' | cut -d/ -f1) questo da solo l'indirizzo IP sulla scheda di rete ens192
-export IPADDRESS=$(hostname -I)		# TODO da troppi indirizzi, CONTROLLARE
 yum -y install --enablerepo=virt7-docker-common-release kubernetes etcd flannel
 
 #Modify file config with right parameters
@@ -52,7 +50,7 @@ KUBELET_PORT="--port=10250"
 
 # You may leave this blank to use the actual hostname
 # Check the node number!
-KUBELET_HOSTNAME="--hostname-override=$IPADDRESS"
+KUBELET_HOSTNAME="--hostname-override=$2"
 
 # Location of the api-server
 KUBELET_API_SERVER="--api-servers=http://$1:8080"

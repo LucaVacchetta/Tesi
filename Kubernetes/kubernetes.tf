@@ -5,7 +5,7 @@ provider "softlayer" {
 
 resource "softlayer_ssh_key" "my_key" {
     label = "${var.user_string}"
-    public_key = "${file("/home/tesi/.ssh/id_rsa.pub")}"
+    public_key = "${file("~/.ssh/id_rsa.pub")}"
 }
 
 resource "softlayer_virtual_guest" "master" {
@@ -23,7 +23,7 @@ resource "softlayer_virtual_guest" "master" {
     ]
 
     connection {
-        private_key = "${file("/home/tesi/.ssh/id_rsa")}"
+        private_key = "${file("~/.ssh/id_rsa")}"
     }
     
     provisioner "file" {
@@ -66,7 +66,7 @@ resource "softlayer_virtual_guest" "worker" {
     ]
 
     connection {
-        private_key = "${file("/home/tesi/.ssh/id_rsa")}"
+        private_key = "${file("~/.ssh/id_rsa")}"
     }
     
     provisioner "file" {
@@ -107,6 +107,7 @@ resource "aws_security_group" "ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+
   # outbound internet access
   egress {
     from_port   = 0
@@ -118,11 +119,11 @@ resource "aws_security_group" "ssh" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "key-aws-ssh"
-  public_key = "${file("/home/tesi/.ssh/id_rsa.pub")}"
+  public_key = "${file("~/.ssh/id_rsa.pub")}"
 }
 
 resource "aws_instance" "worker" {
-    ami           = "${var.aws_ami}" # questo codice specifica CENTOS_7_64 del datacenter us-east-1 #"ami-5f709f34" codice ubuntu us-east-1
+    ami           = "${var.aws_ami}" # questo codice specifica CENTOS_7_64 del datacenter us-east-1
     instance_type = "t2.micro"
     key_name      = "${aws_key_pair.deployer.id}"
 
